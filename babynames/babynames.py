@@ -41,7 +41,19 @@ def extract_names(filename):
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
   # +++your code here+++
-  return
+  lista_nomes = []
+  sorted_rank = []
+  for line in filename:
+      year = re.search(r"Popularity in (\d{4})", str(line))
+      if year:
+          lista_nomes.append(year.group(1))
+      nomes = re.search(r'<tr align="right"><td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>', str(line))
+      if nomes:
+          sorted_rank = sorted_rank + [nomes.group(2) + ' ' + str(nomes.group(1))] + [nomes.group(3) + ' ' + str(nomes.group(1))]
+  lista_nomes = lista_nomes + sorted(sorted_rank)
+
+  
+  return lista_nomes
 
 
 def main():
@@ -51,18 +63,22 @@ def main():
   args = sys.argv[1:]
 
   if not args:
-    print 'usage: [--summaryfile] file [file ...]'
+    print('usage: [--summaryfile] file [file ...]')
     sys.exit(1)
 
   # Notice the summary flag and remove it from args if it is present.
   summary = False
   if args[0] == '--summaryfile':
     summary = True
-    del args[0]
+    del(args[0])
 
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
+
+  for file in args:
+      r = open(file, 'r')
+      print(extract_names(r))
   
 if __name__ == '__main__':
   main()
