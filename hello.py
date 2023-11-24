@@ -1,4 +1,4 @@
-#!/usr/bin/python -tt
+'#!/usr/bin/python -tt
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -26,7 +26,7 @@ def main():
     name = sys.argv[1]
   else:
     name = 'World'
-  print('Hello', name)
+  print('Hello, dear', name)
 
 # This is the standard boilerplate that calls the main() function.
 if __name__ == '__main__':
